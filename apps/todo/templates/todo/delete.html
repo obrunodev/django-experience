@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Delete{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text">
+                    Tem certeza que deseja excluir a tarefa "{{ task.description }}"?
+                </div>
+                <form action="{% url 'todo:delete' task.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger mt-3">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

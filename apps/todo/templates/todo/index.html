@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Todo{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-4">
+        {% include './partials/tasks_component.html' %}
+    </div>
+
+{% endblock content %}
