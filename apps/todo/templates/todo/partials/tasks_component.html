@@ -1,5 +1,8 @@
 <div id="task-list">
     <div class="card">
+        <div class="card-header">
+            Adicionar Tarefa
+        </div>
         <div class="card-body">
             <form
                 hx-post="{% url 'todo:create_htmx' %}"
@@ -26,7 +29,7 @@
                     {% endif %}
                 {% endfor %}
 
-                <button type="submit" class="btn btn-outline-primary btn-sm mt-3">Criar tarefa</button>
+                <button type="submit" class="btn btn-outline-primary btn-sm mt-3">Adicionar</button>
             </form>
         </div>
     </div>
@@ -40,18 +43,32 @@
             <ul class="list-group">
                 {% for task in tasks %}
                     <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <input type="checkbox" name="" id=""> {{ task.description }}
-                            </div>
-                            <div class="col-lg-2">
-                                <a href="{% url 'todo:update' task.pk %}"><i class="bi bi-pencil-fill text-warning"></i></a>
-                                <a href="{% url 'todo:delete' task.pk %}"><i class="bi bi-trash-fill text-danger"></i></a>
-                            </div>
+                        <div class="d-flex" hx-target="this" hx-swap="outerHTML">
+                            {{ task.description }}
+                            <span
+                                hx-get="{% url 'todo:update_htmx' task.pk %}"
+                                class="text-warning ps-2"
+                                style="cursor: pointer;"
+                            >
+                                Editar
+                            </span>
+                            <form hx-target="#task-list">
+                                {% csrf_token %}
+                                <button
+                                    hx-post="{% url 'todo:delete_htmx' task.pk %}"
+                                    hx-confirm="Tem certeza que quer remover este item?"
+                                    type="submit"
+                                    class="btn btn-link text-danger p-0 ps-2 fw-bold"
+                                >
+                                    Remover
+                                </button>
+                            </form>
                         </div>
                     </li>
                 {% empty %}
+                <li class="list-group-item">
                     <center>Você não possui tarefas.</center>
+                </li>
                 {% endfor %}
             </ul>
         </div>

@@ -1,50 +1,17 @@
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from todo.forms import TaskForm
 from todo.models import Task
 
 
-# ========== FUNÇÕES CRUD COMUNS
 def index(request):
     form = TaskForm()
     tasks = Task.objects.order_by('-id')
     return render(request, 'todo/index.html', {
         'form': form,
         'tasks': tasks
-    })
-
-
-def create(request):
-    form = TaskForm(request.POST or None)
-    tasks = Task.objects.all()
-    if form.is_valid():
-        form.save()
-        return redirect('todo:index')
-    return render(request, 'todo/index.html', {
-        'form': form,
-        'tasks': tasks
-    })
-
-
-def delete(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    if request.method == 'POST':
-        task.delete()
-        return redirect('todo:index')
-    return render(request, 'todo/delete.html', {'task': task})
-
-
-def update(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    form = TaskForm(request.POST or None, instance=task)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('todo:index')
-    return render(request, 'todo/update.html', {
-        'form': form,
-        'task':task
     })
 
 
@@ -64,3 +31,33 @@ def create_htmx(request):
         'form': form,
         'tasks': tasks
     })
+
+
+def delete_htmx(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        try:
+            task.delete()
+            return render(request, 'todo/partials/tasks_component.html', {
+                'tasks': Task.objects.order_by('-id'),
+                'form': TaskForm()
+            })
+        except Exception as e:
+            return HttpResponse(f'Erro: {e}')
+
+
+def update_htmx(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    form = TaskForm(request.POST or None, instance=task)
+    if request.method == 'GET':
+        return render(request, 'todo/partials/edit_task.html', {
+            'task': task,
+            'form': form
+        })
+    else:
+        if form.is_valid():
+            form.save()
+            return render(request, 'todo/partials/tasks_component.html', {
+                'tasks': Task.objects.order_by('-id'),
+                'form': TaskForm()
+            })
