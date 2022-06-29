@@ -9,7 +9,7 @@ from todo.models import Task
 def index(request):
     form = TaskForm()
     tasks = Task.objects.order_by('-id')
-    return render(request, 'todo/index.html', {
+    return render(request, 'todo/pages/index.html', {
         'form': form,
         'tasks': tasks
     })
