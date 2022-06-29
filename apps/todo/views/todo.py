@@ -22,10 +22,6 @@ def create_htmx(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Tarefa criada!')
-        return render(request, 'todo/partials/tasks_component.html', {
-            'form': form,
-            'tasks': tasks
-        })
     # If form is not valid, render page with errors
     return render(request, 'todo/partials/tasks_component.html', {
         'form': form,
@@ -49,15 +45,17 @@ def delete_htmx(request, pk):
 def update_htmx(request, pk):
     task = get_object_or_404(Task, pk=pk)
     form = TaskForm(request.POST or None, instance=task)
+
     if request.method == 'GET':
         return render(request, 'todo/partials/edit_task.html', {
             'task': task,
             'form': form
         })
-    else:
+
+    if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return render(request, 'todo/partials/tasks_component.html', {
-                'tasks': Task.objects.order_by('-id'),
-                'form': TaskForm()
-            })
+        return render(request, 'todo/partials/tasks_component.html', {
+            'tasks': Task.objects.order_by('-id'),
+            'form': TaskForm()
+        })

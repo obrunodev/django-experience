@@ -25,6 +25,7 @@ py manage.py runserver
 ### Aqui deixarei alguns desafios para o futuro.
 
 - [x] Migrar todo o CRUD para htmx.
+- [x] Função simples que retorna o json de todas as tarefas.
 - [ ] No delete, abrir um model BS5 ao invés de um confirm do browser.
 - [ ] Adicionar função "concluir tarefa".
     - [ ] Função deve remover a tarefa da lista.

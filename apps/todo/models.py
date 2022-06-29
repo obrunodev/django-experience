@@ -8,3 +8,9 @@ class Task(models.Model):
 
     def __str__(self):
         return self.description
+    
+    def to_dict_json(self):
+        return {
+            'pk': self.pk,
+            'description': self.description
+        }
