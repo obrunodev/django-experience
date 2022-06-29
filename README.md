@@ -26,6 +26,7 @@ py manage.py runserver
 
 - [x] Migrar todo o CRUD para htmx.
 - [x] Função simples que retorna o json de todas as tarefas.
+- [ ] Desenvolver REST API de tarefas com DRF.
 - [ ] No delete, abrir um model BS5 ao invés de um confirm do browser.
 - [ ] Adicionar função "concluir tarefa".
     - [ ] Função deve remover a tarefa da lista.
