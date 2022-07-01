@@ -4,15 +4,13 @@
 
 Neste repositório deixo todos os projetos que desenvolvo na finalidade de aprender algo novo. No caso, cada app tem um estudo diferente.
 
-## Objetivos
-
-O objetivo desse projeto é aprender e guardar projetos com a finalidade de aprender e utilizar de referência para futuros projetos.
+## Projetos
 
 - To-do list
 
 Neste projeto utilizei pela primeira vez a biblioteca htmx, que adiciona "poderes" para o html. Por que só um form pode fazer requisições? E por que essas requisições precisam ser GET e POST somente? Bom, o htmx permite até que um simples button sozinho, execute um GET, POST, DELETE ou PUT e renderize o resultado em algum elemento.
 
-- Cadastro de livros (a fazer)
+- Cadastro de livros (em desenvolvimento)
 
 O objetivo deste projeto é aprender a utilizar inline formsets, possibilitando o cadastro de multiplos livros em um único formulário. Para aumentar o desafio, será usado htmx para algumas interações.
 
