@@ -20,9 +20,6 @@ class Programmer(BaseModel):
     birth_date = models.DateField('Data de nascimento')
     seniority = models.CharField('Senioridade', max_length=10, choices=Seniority.choices)
 
-    def age(self):
-        return self.birth_date - datetime.now()
-
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'

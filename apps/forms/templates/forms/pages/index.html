@@ -5,7 +5,13 @@
     {% include 'partials/navbar.html' %}
 
     <div class="container mt-3">
-        <h3>Formulários</h3>
+        <h3>Programadores</h3>
+
+        <a href="{% url 'forms:add_programmer' %}" class="btn btn-primary my-3">Adicionar novo desenvolvedor</a>
+
+        {% include 'partials/message.html' %}
+
+        {% include '../partials/table_programmers.html' %}
     </div>
 
 {% endblock content %}

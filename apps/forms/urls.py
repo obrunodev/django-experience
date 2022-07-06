@@ -6,4 +6,5 @@ from forms.views import forms
 app_name = 'forms'
 urlpatterns = [
     path('', forms.index, name='index'),
+    path('add_programmer/', forms.add_programmer, name='add_programmer'),
 ]

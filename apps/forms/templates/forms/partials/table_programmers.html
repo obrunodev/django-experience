@@ -1,0 +1,16 @@
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome completo</th>
+            <th>Senioridade</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for programmer in programmers %}
+            <tr>
+                <td>{{ programmer.full_name }}</td>
+                <td>{{ programmer.seniority }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
