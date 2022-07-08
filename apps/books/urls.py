@@ -4,5 +4,5 @@ from books.views import books
 
 app_name = 'books'
 urlpatterns = [
-    path('', books.index, name='index')
+    path('', books.index, name='index'),
 ]
