@@ -24,16 +24,12 @@ class ProgrammerForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
-
         self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
-
         self.fields['birth_date'].widget.attrs.update({
             'class': 'form-control',
             'data-toggle': 'datepicker',
         })
-
         self.fields['seniority'].widget.attrs.update({'class': 'form-control'})
-
         self.fields['email'].widget.attrs.update({
             'placeholder': "Digite seu e-mail aqui.",
             'class': 'form-control',
