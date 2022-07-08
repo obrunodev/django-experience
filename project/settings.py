@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'books',
-    'common',
     'forms',
     'todo',
 ]
