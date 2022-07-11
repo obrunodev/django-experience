@@ -2,3 +2,8 @@
 @import url("../vendors/bootstrap/css/bootstrap.min.css");
 
 .todo-container { max-width: 500px; }
+
+.user-form {
+    margin: 100px auto;
+    max-width: 500px;
+}
