@@ -38,4 +38,4 @@ class BookForm(forms.ModelForm):
             raise ValidationError({'title': name_empty_error})
 
 
-BookFormSet = forms.formset_factory(BookForm, extra=2)
+BookFormSet = forms.modelformset_factory(Book, fields=('title', 'author', 'pages'), extra=2)

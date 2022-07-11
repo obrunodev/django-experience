@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from books.forms import BookForm
 from books.forms import BookFormSet
@@ -13,10 +13,14 @@ def index(request):
 
 def create(request):
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        formset = BookFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect('books:index')
+        context = {'formset': formset}
+        print(formset.errors)
     
     if request.method == 'GET':
-        form = BookForm()
         formset = BookFormSet()
         context = {'formset': formset}
     
