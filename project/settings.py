@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'core',
     'user',
     'books',
-    'forms',
     'todo',
 ]
 

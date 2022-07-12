@@ -6,6 +6,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('user/', include('user.urls')),
     path('books/', include('books.urls')),
-    path('forms/', include('forms.urls')),
     path('todo/', include('todo.urls')),
 ]
