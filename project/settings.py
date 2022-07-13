@@ -28,10 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'core',
-    'user',
     'books',
+    'core',
+    'formset_test',
     'todo',
+    'user',
 ]
 
 MIDDLEWARE = [

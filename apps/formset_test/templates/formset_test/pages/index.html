@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Formset test{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-3">
+        <h3>Formset applications</h3>
+
+        <a href="#" class="btn btn-primary">Formset</a>
+        <a href="#" class="btn btn-primary">Inline formset</a>
+
+        <hr>
+
+        {% include '../partials/index_list_customers.html' %}
+    </div>
+
+{% endblock content %}
