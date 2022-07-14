@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Novo cliente{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-3">
+        <a href="{% url 'formset_test:customers_list' %}">Voltar a lista de clientes</a>
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="display-6 mb-3">Cadastrar novo cliente</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
