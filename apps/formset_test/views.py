@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from formset_test.forms import CustomerForm
+from formset_test.forms import PhoneInlineFormset
 from formset_test.models import Customer
 
 
@@ -39,5 +40,15 @@ def customers_delete(request, pk):
     return redirect('formset_test:customers_list')
 
 
-def phone_create(request):
-    pass
+def phone_create(request, customer_id):
+    customer = get_object_or_404(Customer, pk=customer_id)
+    
+    if request.method == 'POST':
+        pass
+    
+    if request.method == 'GET':
+        formset = PhoneInlineFormset()
+        context = {'formset': formset,
+                   'customer': customer}
+    
+    return render(request, 'formset_test/pages/phone_create.html', context)

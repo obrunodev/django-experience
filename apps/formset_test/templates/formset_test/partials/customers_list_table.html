@@ -14,6 +14,7 @@
                 <td>{{ customer.cpf }}</td>
                 <td>{{ customer.birth_date }}</td>
                 <td class="d-flex justify-content-center">
+                    <a href="{% url 'formset_test:phone_create' customer.pk %}" class="btn btn-warning btn-sm">Telefones</a>
                     <form action="{% url 'formset_test:customers_delete' customer.pk %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm ms-2">Remover</a>
