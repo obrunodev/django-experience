@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'books',
     'core',
     'formset_test',
+    'form_mask',
     'todo',
     'user',
 ]

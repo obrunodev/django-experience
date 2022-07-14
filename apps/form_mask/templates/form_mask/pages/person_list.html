@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Form Mask{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-3">
+        <h3>Máscaras de formulário</h3>
+
+        <a href="{% url 'form_mask:create' %}" class="btn btn-primary my-3">Cadastrar pessoa</a>
+
+        {% include '../partials/person_list_table.html' %}
+    </div>
+
+{% endblock content %}
