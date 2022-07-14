@@ -17,4 +17,4 @@ class PhoneForm(forms.ModelForm):
         fields = '__all__'
 
 
-PhoneInlineFormset = inlineformset_factory(Customer, Phone, form=PhoneForm, extra=3)
+PhoneInlineFormset = inlineformset_factory(Customer, Phone, form=PhoneForm, min_num=1, max_num=10, extra=0)

@@ -44,10 +44,14 @@ def phone_create(request, customer_id):
     customer = get_object_or_404(Customer, pk=customer_id)
     
     if request.method == 'POST':
-        pass
+        formset = PhoneInlineFormset(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, f'Lista de telefone de {customer.name} atualizada')
+            return redirect('formset_test:customers_list')
     
     if request.method == 'GET':
-        formset = PhoneInlineFormset()
+        formset = PhoneInlineFormset(instance=customer)
         context = {'formset': formset,
                    'customer': customer}
     
