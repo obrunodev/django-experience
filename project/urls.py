@@ -6,7 +6,6 @@ urlpatterns = [
     path('', include('core.urls')),
     path('books/', include('books.urls')),
     path('formset_test/', include('formset_test.urls')),
-    path('form_mask/', include('form_mask.urls')),
     path('todo/', include('todo.urls')),
     path('user/', include('user.urls')),
 ]

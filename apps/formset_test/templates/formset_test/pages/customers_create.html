@@ -12,11 +12,29 @@
                 <h3 class="display-6 mb-3">Cadastrar novo cliente</h3>
                 <form action="" method="post">
                     {% csrf_token %}
+
                     {{ form }}
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
                 </form>
             </div>
         </div>
     </div>
 
 {% endblock content %}
+
+{% block js %}
+    <script>
+        var SPMaskBehavior = function (val) { return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009'; },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+        $(document).ready(function() {
+            $('.mask-cpf').mask('000.000.000-00', {reverse: true});
+            $('.mask-date').mask('00/00/0000');
+            $('.mask-phone').mask(SPMaskBehavior, spOptions);
+        });
+    </script>
+{% endblock js %}
