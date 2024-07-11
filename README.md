@@ -5,8 +5,8 @@ Projeto de estudo com implementações de features diversas
 ### Stack
 
 - [x] Django
-- [] Django Rest Framework
-- [] Celery / Celery Beat
+- [ ] Django Rest Framework
+- [ ] Celery / Celery Beat
 
 ### Como executar o projeto
 
