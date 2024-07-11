@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Books list" %}{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{% trans "Published books" %}</h1>
+
+        <ul>
+            {% for book in books %}
+                <li>{{ book }}</li>
+            {% empty %}
+                <li>{% trans "There is no books yet" %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock content %}
