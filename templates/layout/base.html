@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %} • Django Experience</title>
+    <title>{% block title %}{% endblock title %} • DJoboard</title>
+    {% block extra-css %}{% endblock extra-css %}
 </head>
 <body>
     {% block content %}{% endblock content %}
+    {% block extra-js %}{% endblock extra-js %}
 </body>
 </html>

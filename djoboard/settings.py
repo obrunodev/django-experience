@@ -1,18 +1,19 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-uq4zhdm=y4%ht&w%d&cu))y++$&((zi0orfjonfr6a5f2b_xq7'
+SECRET_KEY = 'django-insecure-c-@*+mrl8gqa2=vsc)*ks_y*+p_fsprco^k(9-4cdql0+dawe%'
 DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'apps.users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.books',
+    'apps.jobs'
 ]
 
 MIDDLEWARE = [
@@ -25,7 +26,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'experience.urls'
+ROOT_URLCONF = 'djoboard.urls'
 
 TEMPLATES = [
     {
@@ -43,7 +44,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'experience.wsgi.application'
+WSGI_APPLICATION = 'djoboard.wsgi.application'
 
 DATABASES = {
     'default': {
