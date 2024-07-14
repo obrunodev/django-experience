@@ -3,5 +3,8 @@ from django.urls import path
 
 app_name = 'jobs'
 urlpatterns = [
-    path('', views.JobListView.as_view(), name='list'),
+    path('', views.jobs_list, name='list'),
+    path('create/', views.jobs_create, name='create'),
+    path('update/<int:job_id>/', views.jobs_update, name='update'),
+    path('delete/<int:job_id>/', views.jobs_delete, name='delete'),
 ]

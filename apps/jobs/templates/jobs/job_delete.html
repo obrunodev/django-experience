@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Delete job' %}{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {% trans 'Are you sure?' %}
+            {% trans 'This action can not be undone.' %} <br />
+            <button type="submit">Delete job</button>
+        </form>
+    </div>
+
+{%  endblock content %}

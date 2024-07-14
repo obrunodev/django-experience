@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'New job' %}{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                {% if update %}
+                	{% trans 'Update job' %}
+                {% elif delete %}
+                    {% trans 'Delete job' %}
+                {% else %}
+                    {% trans 'Create job' %}
+                {% endif %} 
+            </button>
+            {% if update %}
+                <a href="{% url 'jobs:delete' job.id %}">Delete</a>
+            {% endif %} 
+        </form>
+    </div>
+
+{%  endblock content %}

@@ -8,10 +8,14 @@
 
     <div class="container">
         <h1>Jobs list</h1>
+    
+        <a href="{% url 'jobs:create' %}">New job</a>
+    
+        {% include 'partials/messages.html' %}
 
         <ul>
-            {% for job in object_list %}
-                <li>{{ job }}</li>
+            {% for job in jobs %}
+                <li>{{ job }} - <a href="{% url 'jobs:update' job.pk %}">Update</a></li>
             {% endfor %}
         </ul>
     </div>
