@@ -1,5 +1,5 @@
 {% if messages %}
 	{% for message in messages %}
-		<p>{{ message.tags }}: {{ message }}</p>
+		<p class="message-{{ message.tags }}">{{ message.tags }}: {{ message }}</p>
 	{% endfor %}
 {% endif %}

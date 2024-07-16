@@ -23,13 +23,6 @@ class MyJobsListView(JobsListView):
 
 
 @login_required
-def jobs_list(request):
-    jobs = Job.objects.all()
-    context = {'jobs': jobs}
-    return render(request, 'jobs/job_list.html', context)
-
-
-@login_required
 def jobs_create(request):
     if request.method == 'GET':
         form = JobForm()
@@ -93,19 +86,5 @@ def jobs_delete(request, job_id):
     else:
         return HttpResponse(status=405)
 
-    context = {
-        'form': form,
-        'delete': True,
-    }
+    context = {'form': form}
     return render(request, 'jobs/job_delete.html', context)
-
-
-@login_required
-def my_jobs(request):
-    """
-    Show logged recruiter jobs only.
-    """
-    if request.method == 'GET':
-        jobs = Job.objects.filter(user=request.user)
-        context = {'jobs': jobs}
-        return render(request, 'jobs/jobs_list.html', context)

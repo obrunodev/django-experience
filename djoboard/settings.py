@@ -1,3 +1,4 @@
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,9 +75,14 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'jobs:list'
 LOGOUT_REDIRECT_URL = 'login'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
