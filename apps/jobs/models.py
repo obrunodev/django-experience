@@ -1,9 +1,11 @@
 from core.models import BaseModel
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class Job(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(_('Title'), max_length=255)
     description = models.TextField(_('Description'))
 
