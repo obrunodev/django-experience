@@ -1,6 +1,8 @@
 {% load i18n %}
 <nav>
     <ul>
+        <li><a href="{% url "jobs:list" %}">{% trans "Job list" %}</a></li>
+        <li><a href="{% url "jobs:my_jobs" %}">{% trans "My jobs" %}</a></li>
         <li><a href="{% url "logout" %}">{% trans "Logout" %}</a></li>
     </ul>
 </nav>

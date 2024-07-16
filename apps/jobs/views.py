@@ -1,10 +1,25 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.translation import gettext as _
+from django.views.generic import ListView
 
 from apps.jobs.models import Job
 from apps.jobs.forms import JobForm
+
+
+class JobsListView(LoginRequiredMixin, ListView):
+    model = Job
+    context_object_name = 'jobs'
+    paginate_by = 10
+
+
+class MyJobsListView(JobsListView):
+
+    def get_queryset(self):
+        return Job.objects.filter(user=self.request.user)
 
 
 @login_required
@@ -22,9 +37,11 @@ def jobs_create(request):
     elif request.method == 'POST':
         form = JobForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
             messages.success(request, 'Job added successfully')
-            return redirect('jobs:list')
+            return redirect('jobs:my_jobs')
 
     else:
         return HttpResponse(status=405)
@@ -35,7 +52,12 @@ def jobs_create(request):
 
 @login_required
 def jobs_update(request, job_id):
-    job = Job.objects.get(pk=job_id)
+    job = get_object_or_404(Job, pk=job_id)
+
+    if request.user != job.user:
+        messages.warning(request, _('You cannot edit this job slot.'))
+        return redirect('jobs:list')
+
     if request.method == 'GET':
         form = JobForm(instance=job)
 
@@ -44,7 +66,7 @@ def jobs_update(request, job_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Job updated successfully')
-            return redirect('jobs:list')
+            return redirect('jobs:my_jobs')
 
     else:
         return HttpResponse(status=405)
@@ -76,3 +98,14 @@ def jobs_delete(request, job_id):
         'delete': True,
     }
     return render(request, 'jobs/job_delete.html', context)
+
+
+@login_required
+def my_jobs(request):
+    """
+    Show logged recruiter jobs only.
+    """
+    if request.method == 'GET':
+        jobs = Job.objects.filter(user=request.user)
+        context = {'jobs': jobs}
+        return render(request, 'jobs/jobs_list.html', context)
